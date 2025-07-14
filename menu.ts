@@ -1,9 +1,28 @@
 import readlinesync = require("readline-sync");
-import { Colors } from "./src/util/colors";
-import { Conta } from "./src/model/conta";
+import { Colors } from "./src/util/Colors";
+import { Conta } from "./src/model/Conta";
+import { ContaCorrente } from "./src/model/ContaCorrente";
+import { ContaPoupanca } from "./src/model/Conta.Poupanca";
+
 export function main() {
 
 let opcao: number;
+
+   // Objeto da Classe ContaCorrente (Teste)
+    const contacorrente: ContaCorrente = new ContaCorrente(2, 123, 1, "Mariana", 15000, 1000);
+    contacorrente.visualizar();
+    contacorrente.sacar(2000);
+    contacorrente.visualizar();
+    contacorrente.depositar(1000);
+    contacorrente.visualizar();
+
+    // Objeto da Classe ContaPoupanca (teste)
+    const contapoupanca: ContaPoupanca = new ContaPoupanca(3, 123, 2, "Victor", 1000, 10);
+    contapoupanca.visualizar();
+    contapoupanca.sacar(200);
+    contapoupanca.visualizar();
+    contapoupanca.depositar(1000);
+    contapoupanca.visualizar();
 
 while (true) {
     console.log(Colors.bg.cyanbright, Colors.fg.crimson,
