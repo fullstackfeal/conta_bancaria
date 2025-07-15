@@ -1,10 +1,10 @@
 export abstract class Conta {
 
-    public _numero: number;
+    private _numero: number;
     private _agencia: number;
     private _tipo: number;
     private _titular: string;
-    protected _saldo: number;
+    private _saldo: number;
 
     constructor(numero: number, agencia: number, tipo: number, titular: string, saldo: number) {
         this._numero = numero;
@@ -13,52 +13,52 @@ export abstract class Conta {
         this._titular = titular;
         this._saldo = saldo;
     }
-    public getNumero() {
+    public get numero() {
         return this._numero;
     }
-    public setNumero(numero: number) {
+    public set numero(numero: number) {
         this._numero = numero;
     }
 
-    public getAgencia() {
+    public get agencia() {
         return this._agencia;
     }
-    public setAgencia(agencia: number) {
+    public set agencia(agencia: number) {
         this._agencia = agencia;
     }
 
-    public getTipo() {
+    public get tipo() {
         return this._tipo;
     }
-    public setTipo(tipo: number) {
+    public set tipo(tipo: number) {
         this._tipo = tipo;
     }
 
-    public getTitular() {
+    public get titular() {
         return this._titular;
     }
-    public setTitular(titular: string) {
+    public set titular(titular: string) {
         this._titular = titular;
     }
 
-    public getSaldo() {
+    public get saldo() {
         return this._saldo;
     }
-    public setSaldo(saldo: number) {
+    public set saldo(saldo: number) {
         this._saldo = saldo;
     }
 
     public sacar(valor: number): boolean {
-        if (this._saldo < valor) {
+        if (this.saldo < valor) {
             console.log("\n Saldo Insuficiente");
             return false;
         }
-        this._saldo = this._saldo - valor;
+        this.saldo = this.saldo - valor;
         return true;
     }
 
     public depositar(valor: number): void {
-        this._saldo = this._saldo + valor;
+        this.saldo = this.saldo + valor;
     }
 
     public visualizar(): void {
