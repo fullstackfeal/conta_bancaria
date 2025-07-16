@@ -9,7 +9,7 @@ import { Console } from "console";
 export function main() {
 
     let contas: ContaController = new ContaController();
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
     const tiposContas = ['Conta Corrente', 'ContaPoupanca '];
 
@@ -163,16 +163,46 @@ export function main() {
 
             case 6:
                 console.log(Colors.fg.whitestrong, "\n\nSaque\n\n"), Colors.reset;
+
+                console.log(Colors.fg.whitestrong, "Digite o número da conta: ");
+                numero = readlinesync.questionInt("");
+
+                console.log("\nDigite o valor do saque (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.sacar(numero, valor);
+
                 keyPress()
                 break;
 
             case 7:
                 console.log(Colors.fg.whitestrong, "\n\nDepósito\n\n", Colors.reset);
+
+                console.log("Digite o número dav conta: ");
+                numero = readlinesync.questionInt("")
+
+                console.log("\nDigite o valor do depósito (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.depositar(numero, valor);
+
                 keyPress()
                 break;
 
             case 8:
                 console.log(Colors.fg.whitestrong, "\n\nTransferência entre Contas\n\n", Colors.reset);
+
+                console.log("Digite o número da conta de origem: ");
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o número da conta de destino: ");
+                numeroDestino = readlinesync.questionInt("");
+
+                console.log("\nDigite o valor do depósito (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.transferir(numero, numeroDestino, valor);
+
                 keyPress()
                 break;
 

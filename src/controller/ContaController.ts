@@ -40,19 +40,51 @@ export class ContaController implements ContaRepository {
         if (buscaConta != null) {
             this.listaContas.splice(this.listaContas.indexOf(buscaConta), 1);
             console.log(Colors.fg.greenstrong, "\nA Conta numero: " + numero + " foi apagada com sucesso!", Colors.reset);
-    } else
+        } else
             console.log(Colors.fg.red, "\nA Conta numero: " + numero + " não foi encontrada!", Colors.reset);
 
     }
 
     sacar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.");
+        let conta = this.buscarNoArray(numero);
+
+        if (conta != null) {
+            if (conta.sacar(valor) == true)
+                console.log(Colors.fg.greenstrong, "\nO saque na conta número: " + numero + " foi efetuado com sucesso!", Colors.reset);
+
+        } else
+            console.log(Colors.fg.red, "\nA conta número: " + numero + " nāo foi encontrada!", Colors.reset);
+
     }
+
     depositar(numero: number, valor: number): void {
-        throw new Error("Method not implemented.");
+        let conta = this.buscarNoArray(numero);
+
+        if (conta != null) {
+            conta.depositar(valor);
+            console.log(Colors.fg.greenstrong, "\nO depósito na conta número: " + numero + " foi efetuado com sucesso!", Colors.reset);
+
+        } else
+            console.log(Colors.fg.red, "\nA conta número: " + numero + " nāo foi encontrada!", Colors.reset);
+
     }
+
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
-        throw new Error("Method not implemented.");
+        let contaOrigem = this.buscarNoArray(numeroOrigem);
+        let contaDestino = this.buscarNoArray(numeroDestino);
+
+        if (contaOrigem != null && contaDestino != null) {
+            if(contaOrigem.sacar(valor) == true) {
+                contaDestino.depositar(valor);
+                console.log(Colors.fg.greenstrong, "\nA transferência da conta número: " + numeroOrigem + 
+                    " para a conta número: " + numeroDestino + " foi efetuada com sucesso!", Colors.reset);
+
+            }
+
+        }else
+        console.log(Colors.fg.red,"\nA conta número: " + numeroOrigem + " e/ou a conta número: " 
+            + contaDestino + " nāo foram encontradas", Colors.reset);
+
     }
 
     public gerarNumero(): number {
